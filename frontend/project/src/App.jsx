@@ -1,19 +1,43 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import Navbar from './components/Navbar';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import './index.css';
+
+const PrivateRoute = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+};
+
+const PublicRoute = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+  return !isAuthenticated ? children : <Navigate to="/dashboard" replace />;
+};
+
+const AppRoutes = () => {
+  const { isAuthenticated } = useAuth();
+  return (
+    <>
+      {isAuthenticated && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />} />
+        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
+  );
+};
+
 export default function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-2xl shadow-2xl text-center">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          🎉 Tailwind is Working!
-        </h1>
-        <h1>asdnf ;lajdf sk</h1>
-        <p className="text-gray-600 mb-6">
-          If you see colors and styling, setup is correct.
-        </p>
-        <p>asdf asdf adsf </p>
-        <button className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
-          Test Button
-        </button>
-      </div>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
