@@ -21,6 +21,7 @@ app.use('/api/courses', courseRoutes);
 app.get('/', (req, res) => res.json({ message: 'Course Management API running' }));
 
 // Connect to MongoDB
+// connection done
 mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
