@@ -9,6 +9,7 @@ export default function App() {
         <p className="text-gray-600 mb-6">
           If you see colors and styling, setup is correct.
         </p>
+        <p>asdf asdf adsf </p>
         <button className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
           Test Button
         </button>
