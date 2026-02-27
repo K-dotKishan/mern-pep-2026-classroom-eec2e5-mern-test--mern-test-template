@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import './index.css';
+// done all the changes required
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
