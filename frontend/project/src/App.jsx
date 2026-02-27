@@ -5,6 +5,7 @@ export default function App() {
         <h1 className="text-3xl font-bold text-gray-800 mb-4">
           🎉 Tailwind is Working!
         </h1>
+        <h1>asdnf ;lajdf sk</h1>
         <p className="text-gray-600 mb-6">
           If you see colors and styling, setup is correct.
         </p>
