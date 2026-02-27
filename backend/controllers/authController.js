@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Student from '../models/Student.js';
-
+//hello
 const generateToken = (student) => {
     return jwt.sign(
         { id: student._id, name: student.name, email: student.email },
